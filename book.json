@@ -1,0 +1,76 @@
+{
+  "title": "Livewire 中文學習筆記",
+  "author": "林品爵 - 哥布林工程師",
+  "description": "林品爵的資識庫。裡面包含了Livewire官方文件翻譯，整理的相關資料，個人使用心得等等……",
+  "language": "zh_TW",
+  "styles": {
+    "website": "./css/gitbook-configure.css"
+  },
+  "plugins": [
+    "theme-comscore",
+    "favicon",
+    "prism",
+    "-highlight",
+    "copy-code-button",
+    "search-pro",
+    "-search",
+    "-lunr",
+    "expandable-chapters",
+    "splitter",
+    "sharing",
+    "github-buttons",
+    "-donate",
+    "tbfed-pagefooter",
+    "anchor-navigation-ex"
+  ],
+  "pluginsConfig": {
+    "github-buttons": {
+      "buttons": [
+        {
+          "user": "javck",
+          "repo": "document-library",
+          "type": "star",
+          "count": true,
+          "size": "small"
+        },
+        {
+          "user": "javck",
+          "width": "160",
+          "type": "follow",
+          "count": true,
+          "size": "small"
+        }
+      ]
+    },
+    "donate": {
+      "button": "打賞",
+      "alipayText": "歐付寶打賞",
+      "wechatText": "LinePay打賞",
+      "alipay": "https://github.com/LiangJunrong/document-library/blob/master/public-repertory/img/seek-reward.jpg?raw=true",
+      "wechat": "https://github.com/LiangJunrong/document-library/blob/master/public-repertory/img/seek-reward.png?raw=true"
+    },
+    "prism": {
+      "css": ["prismjs/themes/prism-solarizedlight.css"],
+      "lang": {
+        "shell": "bash"
+      }
+    },
+    "tbfed-pagefooter": {
+      "copyright": "Copyright &copy Goblin Lab Studio 2021",
+      "modify_label": "該文件修訂時間：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "anchor-navigation-ex": {
+      "showLevel": false
+    },
+    "favicon":{
+        "shortcut": "images/gitbook.ico",
+        "bookmark": "images/gitbook.ico",
+        "appleTouch": "images/gitbook.ico",
+        "appleTouchMore": {
+            "120x120": "images/gitbook.ico",
+            "180x180": "images/gitbook.ico"
+        }
+    }
+  }
+}
