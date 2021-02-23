@@ -384,7 +384,7 @@ class ShowPost extends Component
 }
 ```
 
-假如你用的是 PHP 7.4，你還能夠針對類別屬性做型別提示，Livewire也會自動地幫你進行 Route Model Binding。比如下面組件的 $post 屬性將會被自動注入，在 mount() 內不需要做任何事情
+假如你用的是 PHP 7.4或以上版本，你還能夠針對類別屬性做型別提示，Livewire也會自動地幫你進行 Route Model Binding。比如下面組件的 $post 屬性將會被自動注入，在 mount() 內不需要做任何事情
 
 ```
 //app\Http\Livewire\ShowPost.php
@@ -418,6 +418,8 @@ class ShowPosts extends Component
         ]);
     }
 }
+
+//resources/views/livewire/show-posts.blade.php
 <div>
     @foreach ($posts as $post)
         @include('includes.post', $post)
