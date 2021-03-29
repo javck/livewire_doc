@@ -170,8 +170,6 @@ Livewire 提供了一個語句叫做 wire:poll ，當你把他加入某個元素
 
 ## Prefetching
 
-Livewire offers the ability to "prefetch" the result of an action on mouseover. Toggling display content is a common use case.
-
 Livewire 提供一種能力讓你提前取得 mouseover 行動的結果，以 Toggling 的方式來顯示內容(滑鼠指到某個關鍵字時跳出相關內容)就是一種常見的應用
 
 

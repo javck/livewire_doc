@@ -42,9 +42,9 @@ class ContactForm extends Component
 </form>
 ```
 
-假如驗證失敗的話，一個標準的 ValidationException 將會被丟出並被 Livewire抓到，而且一個標準的 $errors 物件能夠在組件的視圖內取得。因此任何你原先所寫過的Blade視圖檔案，用來處理驗證的部分都能直接拿來使用，不需大幅修改
+假如驗證失敗的話，一個標準的 ValidationException 將會被丟出並被 Livewire 抓到，而且一個標準的 $errors 物件能夠在組件的視圖內取得。因此任何你原先所寫過的Blade視圖檔案，用來處理驗證的部分都能直接拿來使用，不需大幅修改
 
-你也能夠在錯誤包內加入自定義的 key/訊息 對
+你也能夠在錯誤包內加入自定義的 key/訊息，像這樣
 
 `$this->addError('key', 'message')`
 
@@ -68,6 +68,8 @@ class ContactForm extends Component
 ```
 
 ### 即時驗證
+
+談完了基本驗證，有時候你可能會希望在使用者填完一個輸入項後，就立刻進行驗證，而不要等到提交表單時，這時你就需要即時驗證
 
 有時候當使用者在邊輸入文字時一邊進行驗證是很有用的。Livewire讓即時驗證功能變得很簡單，透過 $this->validateOnly()
 
@@ -108,19 +110,21 @@ class ContactForm extends Component
     <button type="submit">Save Contact</button>
 </form>
 ```
+
 讓我們來分解一下究竟這個例子裡頭有哪些重點:
 
 ### 使用者輸入文字到 "name" 輸入項
 
-當使用者輸入他們的名字，一個驗證錯誤訊息將會出現，告知他們名字短於6個字元以提醒其補完。假如使用者未改正就切換到輸入email，如果名字有錯誤的話仍然會出現提示名字錯誤的訊息
+1.使用者輸入文字到 "name" 輸入項
+2.當使用者輸入他們的名字，一個驗證錯誤訊息將會出現，告知他們名字短於6個字元以提醒其補完。假如使用者未改正就切換到輸入email，如果名字有錯誤的話仍然會出現提示名字錯誤的訊息
+3.當使用者提交表單後，還會有一個最終的驗證確認，沒有問題的話才會存入資料庫
 
-當使用者提交表單後，還會有一個最終的驗證確認，沒有問題的話才會存入資料庫
-
-你可以會感到困惑，為什麼我會需要 validateOnly?難道我不能使用 validate 就好嗎? 原因在於當單一的修改就要去驗證所有的欄位，這將會是惱人的用戶體驗。想像一下你才剛開始填入第一個欄位，結果突然間每個輸入項都跑出錯誤訊息，這是不是很困擾?
-
+你可能會感到困惑，為什麼我會需要 validateOnly ? 難道我不能使用 validate 就好嗎? 原因在於當單一的修改就要去驗證所有的欄位，這將會是惱人的用戶體驗。想像一下你才剛開始填入第一個欄位，結果突然間每個輸入項都跑出錯誤訊息，這是不是很困擾?
 所以使用 validateOnly 就能避免這個問題，它只會驗證當前更新的輸入項
 
-Validating with rules outside of the $rules property
+還有件事你可能不知道，其實你可以不透過 $rules 屬性來定義驗證規則
+
+假如你因為某種原因不想要把驗證規則定義在 $rules 屬性中，你永遠可以直接把驗證規則直接傳入 validate() 以及 validateOnly()
 
 ### 不透過 $rules 屬性來定義驗證規則
 
@@ -288,7 +292,7 @@ public function name_field_is_required_for_saving_a_contact()
 }
 ```
 
-如果想要看關於這兩個方法的更多支援語法，請去參考 Testing 文件
+如果想要看關於這兩個方法的更多支援語法，請去參考 Laravel 官方的 Testing 文件
 
 ### 自定義驗證器
 
@@ -333,9 +337,13 @@ class ContactForm extends Component
 > 
 > 你的 Livewire 版本須為 1.2.0 以上才能使用這個功能
 
-Livewire 讓上傳與儲存檔案變得極為簡單，這個超讚，每次我教檔案處理就覺得很辛苦，必須推!
+相信大家在開發網頁應用的時候，都曾經為了檔案上傳功能而卡關過，好消息是 Livewire 有支持檔案上傳功能唷，感興趣的話請看今天的檔案上傳單元
 
-首先，加入 withFileUploads trait 到組件裏頭。你就可以使用 wire:model到檔案上傳輸入項，就如同其他輸入項一般。剩下的就交給Livewire幫你搞定吧!
+首先要注意的是，你的 Livewire 版本須為 1.2.0 以上才能使用這個功能
+
+Livewire 讓上傳與儲存檔案變得極為簡單，這個超讚，每次我教學員如何進行檔案處理都覺得很辛苦，好工具必須推!
+
+首先，加入 withFileUploads trait 到組件裏頭。你就可以使用 wire:model 到檔案上傳輸入項，就如同其他輸入項一般。剩下的就交給 Livewire 幫你搞定吧!
 
 這是一個處理上傳照片的簡單組件範例:
 
@@ -378,7 +386,7 @@ class UploadPhoto extends Component
 
 ### 儲存上傳檔案
 
-之前的例子示範了基礎的儲存劇本:移動臨時上傳檔案到 photos 資料夾，該資料夾位於應用的預設檔案系統磁碟
+接著來討論伺服器將如何儲存上傳檔案，之前的例子示範了基礎的儲存劇本:移動臨時上傳檔案到 photos 資料夾，該資料夾位於應用的預設檔案系統磁碟
 
 然而，你可能想要自定義儲存檔案的名稱，甚至是指定別的儲存系統來儲存檔案，例如 S3 bucket
 
@@ -673,7 +681,7 @@ php artisan livewire:configure-s3-upload-cleanup
 
 ### JavaScript 上傳 API
 
-要整合第三方檔案上傳函式庫一般都需要比單純使用 "<input type="file">" 來得進行更多調整
+要整合第三方檔案上傳函式庫一般都需要比單純使用 `"<input type="file">" `來得進行更多調整
 
 為此， Livewire 開放其所使用的 JavaScript 函式
 

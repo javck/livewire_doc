@@ -996,7 +996,6 @@ $this->emitUp('postAdded');
 #### Scoping To Components By Name
 
 有時候你只想要發送一個事件到相同類型的其他組件，這時候 emitTo() 就派上用場了
-Sometimes you may only want to emit an event to other components of the same type.
 
 ```
 $this->emitTo('counter', 'postAdded');
@@ -1028,7 +1027,7 @@ Livewire.on('postAdded', postId => {
 </script>
 ```
 
-這個特色是極為強大的。比如當Livewire執行某些任務時在你的應用跳出一個 popup 視窗。這是其中一種透過Livewire用來橋接 PHP 與 JS的技巧 
+這個特色是極為強大的。比如當 Livewire 執行某些任務時在你的應用跳出一個 popup 視窗。這是其中一種透過 Livewire 用來橋接 PHP 與 JS 的技巧 
 
 
 ### 派發瀏覽器事件
